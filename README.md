@@ -1,9 +1,11 @@
-# Week7-TrainSchedule
+## Week7-TrainSchedule
 
-## Live Link:
+## Live Link: 
+
+https://dulcem88.github.io/Week7-TrainSchedule/
 
 
-##App Description
+## App Description
 
 This application lists Train names and departure times based on the users input. Any user can enter data into the
 application and that data is listed and visible for all users to see. The app captures the train name, destination, start time, and frequency and then calculates and displays the name, destination, next arrival time and minutes away.
@@ -24,7 +26,8 @@ application and that data is listed and visible for all users to see. The app ca
 - This application captures input from the user via event listener and stores that data as an object onto a database. the information is appended to the database and also to the html using the "child_added" method and "snapshot" is used to capture the information and store it into a variable.
 
 Example : 
-	-  database.ref().on("child_added",function(childSnapshot, prevChildKey){
+	// refrence database when child added
+    database.ref().on("child_added",function(childSnapshot, prevChildKey){
   	console.log(childSnapshot.val());
 
   	//store snapshots in variables
@@ -33,10 +36,11 @@ Example :
 	    var start = childSnapshot.val().start;
 	    var freq = childSnapshot.val().frequency;
 
-In order to determine the arrival times for the trains the "moment" method is utilized
-	- //current time
+In order to determine the arrival times for the trains the "moment" method is utilized.
+	    //current time
 	    var currentTime = moment();
 	    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
 Calculations to determine a few other variables such as difference between first and current time and time apart are calculated and declared in order to determine the  minutes until the next train and the exact time of the next train arrival.
 
 	- var minNextTrain = freq - tRemainder;
