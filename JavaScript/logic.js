@@ -58,13 +58,40 @@ var config = {
     var start = childSnapshot.val().start;
     var freq = childSnapshot.val().frequency;
 
-    // Employee Info
+    // Train Info
 	  console.log(name);
 	  console.log(destination);
 	  console.log(start);
 	  console.log(freq);
 
+    // next train and minutes away calculations
+    //converted start time to 1 year prior
+    var firstTimeConverted = moment(start, "hh:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    //current time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    //difference between first and current time
+    var diffTime = moment().diff(moment(firstTimeConverted),"minutes");
+    console.log("DIFFERENCE IN TIME: "+ diffTime);
+
+    //Time apart
+    var tRemainder = diffTime % freq;
+    console.log(tRemainder);
+
+    //minute until train
+    var minNextTrain = freq - tRemainder;
+    console.log("MINUTES TILL TRAIN: "+ minNextTrain);
+
+    //Next Train Time
+
+    var hrNextTrain = moment().add(minNextTrain,"minutes");
+    var nextArrival= moment(hrNextTrain).format("hh:mm");
+
+
  //train data from snapshot added to table
   $("#train-table > tbody").append("<tr><td>" + name + "</td><td>" + destination + "</td><td>" +
-  freq + "</td><td>next arrival</td><td>minutes away</td></tr>");
+  freq + "</td><td>" + nextArrival + "</td><td>" + minNextTrain+ "</td></tr>");
   });
